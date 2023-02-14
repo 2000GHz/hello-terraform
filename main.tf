@@ -19,5 +19,6 @@ resource "aws_instance" "app_server" {
 
   tags = {
     Name = "Terraform Hello-EC2"
+    APP = "vue2048"
   }
 }
