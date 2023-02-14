@@ -18,7 +18,7 @@ resource "aws_instance" "app_server" {
   instance_type = "t2.micro"
 
   tags = {
-    Name = "Terraform Hello-EC2"
+    Name = "Terraform 2048"
     APP  = "vue2048"
   }
 }
