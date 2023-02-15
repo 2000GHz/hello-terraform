@@ -26,15 +26,17 @@ resource "aws_instance" "app_server" {
   }
 
   provisioner "file" {
-    source = "/home/eloy/Desktop/Proyectos/hello-terraform/userdata.sh"
+    source      = "/home/eloy/Desktop/Proyectos/hello-terraform/userdata.sh"
     destination = "/home/ec2-user/hello-terraform"
+    command = "./cloudinit.sh"
 
     connection {
-      type = "ssh"
-      user = "ec2-user"
+      type        = "ssh"
+      user        = "ec2-user"
       private_key = file("/home/eloy/Desktop/Proyectos/hello-terraform/clave-lucatic.pem")
-      host = aws_instance.app_server.public_ip
+      host        = aws_instance.app_server.public_ip
     }
+
   }
 
 }
