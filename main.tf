@@ -14,8 +14,10 @@ provider "aws" {
 }
 
 resource "aws_instance" "app_server" {
-  ami           = "ami-0b752bf1df193a6c4"
-  instance_type = "t2.micro"
+  ami                    = "ami-0b752bf1df193a6c4"
+  instance_type          = "t2.micro"
+  subnet_id              = "subnet-0818b9561675ff47e"
+  vpc_security_group_ids = ["sg-003af02b9a759e866"]
 
   tags = {
     Name = "Terraform 2048"
