@@ -4,6 +4,12 @@
   vars:
     ansible_user: ec2-user
   tasks:
+    - name: Wait for SSH
+      ansible.builtin.wait_for_connection:
+        delay: 30
+        sleep: 5
+        timeout: 300
+
     - name: Install Apache
       ansible.builtin.yum:
         name: httpd
