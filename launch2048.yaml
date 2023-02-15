@@ -1,0 +1,26 @@
+---
+- hosts: all
+  become: true
+  vars:
+    ansible_user: ec2-user
+  tasks:
+    - name: Install Apache
+      ansible.builtin.yum:
+        name: httpd
+        state: present
+      become: true
+
+    - name: Start Apache
+      ansible.builtin.service:
+        name: httpd
+        state: started
+      become: true
+
+    - name: Copy files to ec2 instances
+      ansible.builtin.copy:
+        src: /home/eloy/Desktop/Proyectos/hello-2048/public_html/
+        dest: /var/www/html/
+        owner: apache
+        group: apache
+        mode: '0644'
+        directory_mode: '0755'

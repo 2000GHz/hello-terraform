@@ -25,18 +25,8 @@ resource "aws_instance" "app_server" {
     APP  = var.app_name
   }
 
-  provisioner "file" {
-    source      = "/home/eloy/Desktop/Proyectos/hello-terraform/userdata.sh"
-    destination = "/home/ec2-user/hello-terraform"
-    command = "./cloudinit.sh"
-
-    connection {
-      type        = "ssh"
-      user        = "ec2-user"
-      private_key = file("/home/eloy/Desktop/Proyectos/hello-terraform/clave-lucatic.pem")
-      host        = aws_instance.app_server.public_ip
-    }
-
+  provisioner "local-exec" {
+    command = "ansible-playbook -i aws_ec2.yml launch2048.yaml"
   }
 
 }
