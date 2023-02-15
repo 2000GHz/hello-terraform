@@ -21,7 +21,7 @@ resource "aws_instance" "app_server" {
   key_name               = "clave-lucatic"
 
   tags = {
-    Name = "Terraform 2048"
-    APP  = "vue2048"
+    Name = var.instance_name
+    APP  = var.app_name
   }
 }
