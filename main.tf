@@ -38,7 +38,7 @@ resource "aws_instance" "app_server" {
   provisioner "remote-exec" {
     inline = [
       "chmod +x /tmp/cloudinit.sh",
-      "sudo /tmp/cloudinit.sh"
+      "/tmp/cloudinit.sh"
     ]
     connection {
       type = "ssh"
