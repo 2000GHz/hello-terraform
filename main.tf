@@ -19,6 +19,17 @@ resource "aws_instance" "app_server" {
   subnet_id              = "subnet-0818b9561675ff47e"
   vpc_security_group_ids = ["sg-003af02b9a759e866"]
   key_name               = "clave-lucatic"
+  user_data = <<EOF
+  #!/bin/sh
+amazon-linux-extras install -y docker
+service docker start
+systemctl enable docker
+usermod -a -G docker ec2-user
+pip3 install docker-compose
+wget <https://raw.githubusercontent.com/2000GHz/hello-2048/master/docker-compose.yaml>
+docker-compose pull
+docker-compose up -d
+EOF
 
   tags = {
     Name = var.instance_name
