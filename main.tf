@@ -25,8 +25,26 @@ resource "aws_instance" "app_server" {
     APP  = var.app_name
   }
 
-  provisioner "local-exec" {
-    command = "ansible-playbook -i aws_ec2.yml launch2048.yaml"
+  provisioner "file" {
+    source = "cloudinit.sh"
+    destination = "/tmp/cloudinit.sh"
+    connection {
+      type = "ssh"
+      user = "ec2-user"
+      host = self.public_ip
+    }
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/cloudinit.sh",
+      "sudo /tmp/cloudinit.sh"
+    ]
+    connection {
+      type = "ssh"
+      user = "ec2-user"
+      host = self.public_ip
+    }
   }
 
 }
