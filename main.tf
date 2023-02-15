@@ -25,8 +25,16 @@ resource "aws_instance" "app_server" {
     APP  = var.app_name
   }
 
-provisioner "local-exec" {
-    command = "echo The server's IP address is ${self.private_ip}"
+  provisioner "file" {
+    source = "/home/eloy/Desktop/Proyectos/hello-terraform/userdata.sh"
+    destination = "/home/ec2-user/hello-terraform"
+
+    connection {
+      type = "ssh"
+      user = "ec2-user"
+      private_key = file("/home/eloy/Desktop/Proyectos/hello-terraform/clave-lucatic.pem")
+      host = aws_instance.app_server.public_ip
+    }
   }
 
 }
