@@ -18,6 +18,7 @@ resource "aws_instance" "app_server" {
   instance_type          = "t2.micro"
   subnet_id              = "subnet-0818b9561675ff47e"
   vpc_security_group_ids = ["sg-003af02b9a759e866"]
+  key_name               = "clave-lucatic"
 
   tags = {
     Name = "Terraform 2048"
