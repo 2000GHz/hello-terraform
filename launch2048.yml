@@ -24,6 +24,7 @@
       service: 
         name: docker
         state: started
+      become: true
 
     - name: Add ec2-user to docker group
       user:
