@@ -47,6 +47,9 @@
         state: present
 
     - name: Run container
-      command: /home/ec2-user/.local/bin/docker-compose up -d
+      shell: /home/ec2-user/.local/bin/docker-compose up -d
       become: true
+    
+    - name: Print IP address to access game
+      command: echo 'The game is up and running at http://'
     
