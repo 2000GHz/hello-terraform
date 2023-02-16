@@ -23,6 +23,7 @@
     - name: Enable and start docker 
       service: 
         name: docker
+        enabled: true
         state: started
       become: true
 
@@ -38,4 +39,5 @@
     
     - name: Run container
       command: docker-compose up -d
+      become: false
     
