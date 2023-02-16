@@ -1,1 +1,8 @@
-.terraform
+*
+.*
+!.dockerignore
+!ansible.cfg
+!*.yml
+!Dockerfile
+!Jenkinsfile
+!README.mf
