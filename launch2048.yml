@@ -18,17 +18,15 @@
       ansible.builtin.command: pip3 install docker-compose
       become: false
     
-    - name: Start docker at launch
-      ansible.builtin.command: service docker start
-      become: true
-    
-    - name: Start docker service
-      ansible.builtin.command: systemctl enable docker
-      become: true
+    - name: Enable and start docker 
+      ansible.builtin.service: 
+        name: docker
+        state: started
 
-    - name: Assign ec2-user to docker group
-      ansible.builtin.command: usermod -a -G docker ec2-user
-      become: true
+    - name: Add ec2-user to docker group
+        user: ec2-user
+        groups: docker
+        append: yes
     
     - name: Pull image from repository
       ansible.builtin.command: docker pull ghcr.io/2000ghz/hello-terraform/hello-terraform
