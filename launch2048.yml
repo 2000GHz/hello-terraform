@@ -47,7 +47,7 @@
 
     - name: Run container
       become: false
-      command: docker-compose up -d
+      command: /home/ec2-user/.local/bin/docker-compose -f /home/ec2/user/docker-compose.yml up -d
       register: command_output
 
     - debug:
