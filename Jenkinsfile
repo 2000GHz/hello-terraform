@@ -57,12 +57,10 @@ pipeline {
                 }
             }
 
-        
-
-
         stage('Run Ansible') {
             steps {
-                sh('sleep 5s') // Sleep before running the ansible playbook
+                sh("echo 'Sleeping 20s for SSH to be up'")
+                sh('sleep 20s') // Sleep before running the ansible playbook
                 withAWS(credentials: 'AWS Credentials') {
                     sshagent(['ssh-amazon']) {
                         sh('ansible-playbook -i aws_ec2.yml launch2048.yml')
