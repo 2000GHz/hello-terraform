@@ -6,7 +6,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 withAWS(credentials: 'AWS Credentials') {
-                    sh ('terraform apply')
+                    sh ('terraform apply -auto-approve')
                 }
             }
         }
