@@ -47,6 +47,6 @@
         state: present
 
     - name: Run container
-      command: ~/.local/bin/docker-compose up -d
+      command: /home/ec2-user/.local/bin/docker-compose up -d
       become: true
     
