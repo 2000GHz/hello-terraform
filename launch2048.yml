@@ -43,8 +43,12 @@
       command: wget https://raw.githubusercontent.com/2000GHz/hello-terraform/main/docker-compose.yml
 
     - name: Run container
-      become: true
-      command: '/home/ec2-user/.local/bin/docker-compose -f /home/ec2-user/docker-compose.yml up -d'
+      shell: |
+       whoami
+       pwd
+       cd /home/ec2-user
+       ls
+       docker-compose --help
       
     - name: Print IP address to access game
       command: echo 'The game is up and running at http://'
