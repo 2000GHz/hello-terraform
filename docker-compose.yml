@@ -1,0 +1,8 @@
+version: "3"
+services:
+  hello-2048:
+    image: ghcr.io/2000ghz/hello-terraform/hello-terraform:latest
+    build: .
+    ports:
+      - "8080:8080"
+      - "80:80"

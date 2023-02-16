@@ -1,7 +1,9 @@
-.terraform
-terraform.tfstate
-.terraform.lock.hcl
-terraform.tfstate.backup
-userdata.sh
-clave-lucatic.pem
-/14-02
+*
+!*.tf
+!*.yml
+!*.cfg
+!*.md
+!Dockerfile
+!Jenkinsfile
+!/public_html
+!.dockerignore
