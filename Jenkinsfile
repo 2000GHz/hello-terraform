@@ -62,8 +62,8 @@ pipeline {
                 withAWS(credentials: 'AWS Credentials') {
                     ansiblePlaybook become: true, colorized: true, credentialsId: 'ssh-amazon', disableHostKeyChecking: true, inventory: '/home/trabajo/Desktop/LucaTIC/hello-terraform/aws_ec2.yml', playbook: '/home/trabajo/Desktop/LucaTIC/hello-terraform/launch2048.yml'
                 }
-                }
             }
         }
     }
 }
+
