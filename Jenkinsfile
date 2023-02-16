@@ -3,7 +3,7 @@ pipeline {
 
     options {
         timestamps() 
-        ansiColor('css') // Enable terminal colors
+        ansiColor('xterm') // Enable terminal colors
     }
 
     stages {
