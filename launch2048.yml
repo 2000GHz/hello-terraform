@@ -42,12 +42,17 @@
     - name: Download docker-compose.yml to the machine
       command: wget https://raw.githubusercontent.com/2000GHz/hello-terraform/main/docker-compose.yml
 
+    - name: copy shell script to the machine
+      copy:
+        src: /home/trabajo/Desktop/LucaTIC/hello-terraform/compose.sh
+        dest: /home/ec2-user
+
+    - name: give running permissions to script
+        command: chmod +x compose.sh
+
     - name: Run container
       become: false
-      shell: |
-       whoami
-       pwd
-       ls
+      shell: \.compose.sh
       register: command_output
 
     - debug:
