@@ -41,11 +41,6 @@
 
     - name: Download docker-compose.yml to the machine
       command: wget https://raw.githubusercontent.com/2000GHz/hello-terraform/main/docker-compose.yml
-    
-    - name: Wait for the file to be downloaded
-      wait_for:
-        path: ~/docker-compose.yml
-        state: present
 
     - name: Run container
       become: true
