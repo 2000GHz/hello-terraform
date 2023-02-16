@@ -48,7 +48,7 @@
         dest: /home/ec2-user
 
     - name: give running permissions to script
-        command: chmod +x compose.sh
+      command: chmod +x compose.sh
 
     - name: Run container
       become: false
