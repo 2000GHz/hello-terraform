@@ -48,9 +48,8 @@
         state: present
 
     - name: Run container
-      docker_compose:
-        project_src: /home/ec2-user/docker-compose.yml
-        state: present
+      become: true
+      command: '/home/ec2-user/.local/bin/docker-compose -f /home/ec2-user/docker-compose.yml up -d'
       
     - name: Print IP address to access game
       command: echo 'The game is up and running at http://'
