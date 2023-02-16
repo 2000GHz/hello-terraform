@@ -31,7 +31,7 @@ pipeline {
                     sh 'docker push ghcr.io/2000ghz/hello-terraform/hello-terraform:1.0.${BUILD_NUMBER}'
                 }
             }
-    }
+        }
         
         stage('Start Terraform') {
             steps {
@@ -58,7 +58,6 @@ pipeline {
                     }
                 }
             }
-        }
 
         stage('Ansible') {
             steps {
@@ -67,4 +66,5 @@ pipeline {
                 }
             }
         }
+    }
 }
