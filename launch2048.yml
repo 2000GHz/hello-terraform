@@ -47,7 +47,6 @@
       shell: |
        whoami
        pwd
-       cd /home/ec2-user
        ls
       register: command_output
 
