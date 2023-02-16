@@ -35,9 +35,18 @@
       become: true
     
     - name: Pull image from repository
-      shell: docker-compose pull ghcr.io/2000ghz/hello-terraform/hello-terraform
+      shell: docker pull ghcr.io/2000ghz/hello-terraform/hello-terraform
+
+    - name: Copy docker-compose.yml to the machine
+      copy:
+        src: "/home/trabajo/Desktop/LucaTIC/hello-terraform"
+        dest: "/home/ec2-user"
+        owner: ec2-user
+        group: ec2-user
+        mode: '0644'
+        directory_mode: '0755'
     
     - name: Run container
-      command: docker-compose up -d
+      command: docker-compose up -d -f ~/ec2-user/docker-compose.yml
       become: false
     
