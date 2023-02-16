@@ -15,7 +15,7 @@ pipeline {
                 echo 'Building image...'
                 sh '''docker-compose build
                       git tag 1.0.${BUILD_NUMBER}
-                      docker tag -t ghcr.io/2000ghz/hello-terraform/hello-terraform:latest -t ghcr.io/2000ghz/hello-terraform/hello-terraform:1.0.${BUILD_NUMBER}
+                      docker tag ghcr.io/2000ghz/hello-terraform/hello-terraform:latest ghcr.io/2000ghz/hello-terraform/hello-terraform:1.0.${BUILD_NUMBER}
                       '''
                       sshagent(['github-credentials']) {
                         sh('git push git@github.com:2000ghz/hello-terraform.git --tags')
