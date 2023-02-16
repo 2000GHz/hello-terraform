@@ -48,8 +48,7 @@
         state: present
 
     - name: Run container
-      become: true
-      docker.community.docker_compose:
+      community.docker.docker_compose:
         project_src: /home/ec2-user/docker-compose.yml
         state: started
       
