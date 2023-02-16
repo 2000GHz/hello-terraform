@@ -20,11 +20,6 @@
         executable: pip3
         state: present
       become: false
-
-    - name: Docker-compose-plugin
-      yum:
-        name: docker-compose-plugin
-        state: latest
     
     - name: Enable and start docker 
       service: 
@@ -54,7 +49,9 @@
 
     - name: Run container
       become: true
-      command: 'docker compose up -d'
+      docker.community.docker_compose:
+        project_src: /home/ec2-user/docker-compose.yml
+        state: started
       
     - name: Print IP address to access game
       command: echo 'The game is up and running at http://'
