@@ -11,15 +11,16 @@
         timeout: 300
 
     - name: Install Docker
-      ansible.builtin.command: amazon-linux-extras install -y docker
+      command: amazon-linux-extras install -y docker
       become: true
 
     - name: Install docker-compose
-      ansible.builtin.command: pip3 install docker-compose
+      pip: 
+      name: docker-compose 
       become: false
     
     - name: Enable and start docker 
-      ansible.builtin.service: 
+      service: 
         name: docker
         state: started
 
@@ -29,9 +30,8 @@
         append: yes
     
     - name: Pull image from repository
-      ansible.builtin.command: docker pull ghcr.io/2000ghz/hello-terraform/hello-terraform
+      command: docker pull ghcr.io/2000ghz/hello-terraform/hello-terraform
     
     - name: Run container
-      ansible.builtin.command: docker run -td --rm -p 80:80 ghcr.io/2000ghz/hello-terraform/hello-terraform
-
+      command: docker-compose up
     
