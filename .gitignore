@@ -5,5 +5,5 @@
 !*.md
 !Dockerfile
 !Jenkinsfile
-!/public_html
+!./public_html
 !.dockerignore
