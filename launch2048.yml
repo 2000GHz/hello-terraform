@@ -45,3 +45,7 @@
     - name: Run container
       shell: '/usr/local/bin/docker-compose up -d'
       become: true
+
+    - debug:
+        msg: "The game is up and running at http://{{ ansible_host }}"
+        
