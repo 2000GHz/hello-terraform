@@ -31,7 +31,7 @@
         append: true
     
     - name: Pull image from repository
-      command: docker pull ghcr.io/2000ghz/hello-terraform/hello-terraform
+      command: docker-compose pull ghcr.io/2000ghz/hello-terraform/hello-terraform
     
     - name: Run container
       command: docker-compose up
