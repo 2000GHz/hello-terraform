@@ -44,7 +44,7 @@
 
     - name: copy shell script to the machine
       copy:
-        src: /home/trabajo/Desktop/LucaTIC/hello-terraform/compose.sh
+        src: compose.sh
         dest: /home/ec2-user
         remote_src: yes
         owner: ec2-user
