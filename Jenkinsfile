@@ -52,7 +52,6 @@ pipeline {
         stage('Planning and deploying') {
             steps {
                 withAWS(credentials: 'AWS Credentials') {
-                    sshagent(['ssh-amazon']) {
                         sh ('''
                     terraform plan
                     terraform apply -auto-approve -no-color''')
@@ -60,5 +59,12 @@ pipeline {
                 }
             }
         }
-    }
+
+        stage('Ansible') {
+            steps {
+                sshagent(['ssh-amazon']) {
+                    sh('ansible-playbook -i aws_ec2.yml launch2048.yml')
+                }
+            }
+        }
 }
