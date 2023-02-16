@@ -43,8 +43,9 @@
       command: wget https://raw.githubusercontent.com/2000GHz/hello-terraform/main/docker-compose.yml
 
     - name: Run container
-      command: 'docker-compose up -d'
+      shell: '/usr/local/bin/docker-compose up -d'
       register: command_output
+      become: true
 
     - debug:
         var: command_output.stdout_lines
