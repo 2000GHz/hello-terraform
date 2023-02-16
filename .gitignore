@@ -1,8 +1,9 @@
 *
 .*
+!*.yml
+!*.tf
 !.dockerignore
 !ansible.cfg
-!*.yml
 !Dockerfile
 !Jenkinsfile
 !README.mf
