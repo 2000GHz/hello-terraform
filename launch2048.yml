@@ -41,7 +41,7 @@
 
     - name: Transfer docker-compose.yml to the machine
       copy:
-        src: /home/trabajo/Desktop/LucaTIC/hello-terraform/docker-compose.yml
+        src: "{{ playbook_dir }}/docker-compose.yml"
         dest: /home/ec2-user/
 
     - name: Run container
