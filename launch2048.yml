@@ -11,14 +11,24 @@
         timeout: 300
 
     - name: Install Docker
-      ansible.builtin.yum:
-        name: docker
-        state: present
+      ansible.builtin.command: amazon-linux-extras install -y docker
       become: true
 
     - name: Install docker-compose
-      ansible.builtin.command: pip install docker-compose
+      ansible.builtin.command: pip3 install docker-compose
       become: false
+    
+    - name: Start docker at launch
+      ansible.builtin.command: service docker start
+      become: true
+    
+    - name: Start docker service
+      ansible.builtin.command: systemctl enable docker
+      become: true
+
+    - name: Assign ec2-user to docker group
+      ansible.builtin.command: usermod -a -G docker ec2-user
+      become: true
     
     - name: Pull image from repository
       ansible.builtin.command: docker pull ghcr.io/2000ghz/hello-terraform/hello-terraform
