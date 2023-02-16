@@ -42,18 +42,12 @@
     - name: Download docker-compose.yml to the machine
       command: wget https://raw.githubusercontent.com/2000GHz/hello-terraform/main/docker-compose.yml
 
-    - name: copy shell script to the machine
-      copy:
-        src: compose.sh
-        dest: /home/ec2-user
-        remote_src: yes
-        owner: ec2-user
-        group: ec2-user
-        mode: '777'
+    - name: Copy binary to /usr/bin/
+      command: cp /home/ec2-user/.local/bin/docker-compose /usr/bin
 
     - name: Run container
       become: false
-      shell: \.compose.sh
+      command: docker-compose up -d
       register: command_output
 
     - debug:
