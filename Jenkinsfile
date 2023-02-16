@@ -1,24 +1,21 @@
 pipeline {
     agent any
 
-    stages {
+    options {
+        timestamps() 
+        ansiColor('css') // Enable terminal colors
+    }
 
-        stage('Cleanup') {
-            steps {
-                echo 'Cleaning system...'
-                sh 'docker system prune -a --volumes --force'
-            }
-        }
+    stages {
 
         stage('Build') {
             steps {
-                echo 'Building image...'
                 sh '''docker-compose build
                       git tag 1.0.${BUILD_NUMBER}
                       docker tag ghcr.io/2000ghz/hello-terraform/hello-terraform:latest ghcr.io/2000ghz/hello-terraform/hello-terraform:1.0.${BUILD_NUMBER}
                       '''
                       sshagent(['github-credentials']) {
-                        sh('git push git@github.com:2000ghz/hello-terraform.git --tags')
+                        sh('git push git@github.com:2000ghz/hello-terraform.git --tags') // Push git tags
                       }
             }
         }
@@ -28,8 +25,8 @@ pipeline {
                 echo 'Logging into GitHub'
                 withCredentials([string(credentialsId: 'Token-GitHub', variable: 'GITHUB_TOKEN')]) {
                     sh 'echo $GITHUB_TOKEN | docker login ghcr.io -u 2000ghz --password-stdin'
-                    sh 'docker push ghcr.io/2000ghz/hello-terraform/hello-terraform:1.0.${BUILD_NUMBER}'
-                    sh 'docker push ghcr.io/2000ghz/hello-terraform/hello-terraform:latest'
+                    sh 'docker push ghcr.io/2000ghz/hello-terraform/hello-terraform:1.0.${BUILD_NUMBER}' // Push image with tag 1.0.BuildNumber
+                    sh 'docker push ghcr.io/2000ghz/hello-terraform/hello-terraform:latest' // Push image with tag latest
                 }
             }
         }
@@ -42,7 +39,7 @@ pipeline {
             }
         }
 
-        stage('Validation') {
+        stage('Terraform Validation') {
             steps {
                 withAWS(credentials: 'AWS Credentials') {
                     sh ('terraform validate')
@@ -60,7 +57,7 @@ pipeline {
                 }
             }
 
-        stage('Ansible') {
+        stage('Run Ansible') {
             steps {
                 withAWS(credentials: 'AWS Credentials') {
                     sshagent(['ssh-amazon']) {
