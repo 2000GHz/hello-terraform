@@ -43,6 +43,7 @@
       command: wget https://raw.githubusercontent.com/2000GHz/hello-terraform/main/docker-compose.yml
 
     - name: Run container
+      become: false
       shell: |
        whoami
        pwd
