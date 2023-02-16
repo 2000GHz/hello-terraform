@@ -43,7 +43,6 @@
       command: wget https://raw.githubusercontent.com/2000GHz/hello-terraform/main/docker-compose.yml
 
     - name: copy shell script to the machine
-      hosts: 
       copy:
         src: /home/trabajo/Desktop/LucaTIC/hello-terraform/compose.sh
         dest: /home/ec2-user
