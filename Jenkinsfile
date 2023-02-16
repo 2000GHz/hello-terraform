@@ -29,6 +29,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'Token-GitHub', variable: 'GITHUB_TOKEN')]) {
                     sh 'echo $GITHUB_TOKEN | docker login ghcr.io -u 2000ghz --password-stdin'
                     sh 'docker push ghcr.io/2000ghz/hello-terraform/hello-terraform:1.0.${BUILD_NUMBER}'
+                    sh 'docker push ghcr.io/2000ghz/hello-terraform/hello-terraform:latest'
                 }
             }
         }
