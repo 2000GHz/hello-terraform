@@ -14,12 +14,11 @@ pipeline {
             steps {
                 echo 'Building image...'
                 sh '''docker-compose build
-                      docker pull ghcr.io/2000ghz/hello-terraform/hello-terraform:latest
                       git tag 1.0.${BUILD_NUMBER}
                       docker tag ghcr.io/2000ghz/hello-terraform/hello-terraform:latest ghcr.io/2000ghz/hello-terraform/hello-terraform:1.0.${BUILD_NUMBER}
                       '''
                       sshagent(['github-credentials']) {
-                        sh('git push git@github.com:2000ghz/hello-terraform.git --tags')
+                        sh('git push --tags')
                       }
             }
         }
@@ -29,7 +28,7 @@ pipeline {
                 echo 'Logging into GitHub'
                 withCredentials([string(credentialsId: 'Token-GitHub', variable: 'GITHUB_TOKEN')]) {
                     sh 'echo $GITHUB_TOKEN | docker login ghcr.io -u 2000ghz --password-stdin'
-                    sh 'docker push ghcr.io/2000ghz/hello-terraform/hello-terraform:1.0.${BUILD_NUMBER}'
+                    sh 'docker-compose push ghcr.io/2000ghz/hello-terraform:1.0.${BUILD_NUMBER}'
                 }
             }
     }
