@@ -44,10 +44,10 @@
 
     - name: Copy binary to /usr/bin/
       command: cp /home/ec2-user/.local/bin/docker-compose /usr/bin
+      become: true
 
     - name: Run container
-      become: false
-      command: /home/ec2-user/.local/bin/docker-compose -f /home/ec2-user/docker-compose.yml up -d
+      command: 'docker-compose up -d'
       register: command_output
 
     - debug:
