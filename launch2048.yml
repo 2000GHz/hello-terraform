@@ -25,10 +25,10 @@
         state: started
 
     - name: Add ec2-user to docker group
-        ansible.builtin.user:
-          name: ec2-user
-          groups: docker
-          append: true
+      user:
+        name: ec2-user
+        groups: docker
+        append: true
     
     - name: Pull image from repository
       command: docker pull ghcr.io/2000ghz/hello-terraform/hello-terraform
