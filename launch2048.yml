@@ -16,7 +16,7 @@
 
     - name: Install docker-compose
       pip: 
-      name: docker-compose 
+        name: docker-compose 
       become: false
     
     - name: Enable and start docker 
