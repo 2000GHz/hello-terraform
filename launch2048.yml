@@ -42,6 +42,6 @@
       command: wget https://raw.githubusercontent.com/2000GHz/hello-terraform/main/docker-compose.yml
     
     - name: Run container
-      command: docker-compose up -d
+      command: ~/.local/bin/docker-compose up -d
       become: false
     
