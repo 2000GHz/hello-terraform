@@ -61,8 +61,10 @@ pipeline {
 
         stage('Ansible') {
             steps {
-                sshagent(['ssh-amazon']) {
+                withAWS(credentials: 'AWS Credentials') {
+                    sshagent(['ssh-amazon']) {
                     sh('ansible-playbook -i aws_ec2.yml launch2048.yml')
+                }
                 }
             }
         }
