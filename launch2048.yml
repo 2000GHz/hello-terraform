@@ -34,5 +34,5 @@
       command: docker-compose pull ghcr.io/2000ghz/hello-terraform/hello-terraform
     
     - name: Run container
-      command: docker-compose up
+      command: docker-compose up -d
     
