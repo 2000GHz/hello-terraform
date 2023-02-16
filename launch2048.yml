@@ -20,4 +20,10 @@
       ansible.builtin.command: pip install docker-compose
       become: false
     
+    - name: Pull image from repository
+      ansible.builtin.command: docker pull ghcr.io/2000ghz/hello-terraform/hello-terraform
+    
+    - name: Run container
+      ansible.builtin.command: docker run -td --rm -p 80:80 ghcr.io/2000ghz/hello-terraform/hello-terraform
+
     
