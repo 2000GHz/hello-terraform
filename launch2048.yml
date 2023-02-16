@@ -39,13 +39,15 @@
       shell: docker pull ghcr.io/2000ghz/hello-terraform/hello-terraform
       become: true
 
-    - name: Download docker-compose.yml to the machine
-      command: wget https://raw.githubusercontent.com/2000GHz/hello-terraform/main/docker-compose.yml
+    - name: Transfer docker-compose.yml to the machine
+      copy:
+        src: /home/trabajo/Desktop/LucaTIC/hello-terraform/docker-compose.yml
+        dest: /home/ec2-user/
 
     - name: Run container
       shell: '/usr/local/bin/docker-compose up -d'
       become: true
 
     - debug:
-        msg: "The game is up and running at http://{{ ansible_host }}"
+        msg: "The game is up and running at http://{{ ansible_host }} "
         
