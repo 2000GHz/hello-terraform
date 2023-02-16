@@ -47,6 +47,6 @@
         directory_mode: '0755'
     
     - name: Run container
-      command: docker-compose up -d -f ~/ec2-user/docker-compose.yml
+      command: docker-compose -f ~/docker-compose.yml up -d
       become: false
     
