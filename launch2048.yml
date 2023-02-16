@@ -48,5 +48,5 @@
 
     - name: Run container
       command: ~/.local/bin/docker-compose up -d
-      become: false
+      become: true
     
