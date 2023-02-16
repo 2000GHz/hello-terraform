@@ -21,15 +21,15 @@ pipeline {
 
         stage('Planning and deploying') {
             steps {
-                withAWS(credentials: 'AWS Credentials') {
+                withCredentials([sshUserPrivateKey(credentialsId: 'ssh-amazon', keyFileVariable: '')]) {
+                    withAWS(credentials: 'AWS Credentials') {
                     sh ('''
                     terraform plan
                     terraform apply -auto-approve -no-color''')
+                    }
                 }
             }
         }
-
-       
     }
 }
 
