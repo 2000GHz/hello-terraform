@@ -12,6 +12,7 @@
 
     - name: Install Docker
       command: amazon-linux-extras install -y docker
+      become: true
 
     - name: Install docker-compose
       pip: 
