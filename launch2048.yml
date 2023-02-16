@@ -34,7 +34,7 @@
       become: true
     
     - name: Pull image from repository
-      shell: ~/.local/bin/docker-compose pull ghcr.io/2000ghz/hello-terraform/hello-terraform
+      shell: docker-compose pull ghcr.io/2000ghz/hello-terraform/hello-terraform
     
     - name: Run container
       command: docker-compose up -d
