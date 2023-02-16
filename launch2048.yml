@@ -44,12 +44,4 @@
 
     - name: Run container
       shell: '/usr/local/bin/docker-compose up -d'
-      register: command_output
       become: true
-
-    - debug:
-        var: command_output.stdout_lines
-
-      
-    - name: Print IP address to access game
-      command: echo 'The game is up and running at http://'
