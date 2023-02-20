@@ -9,6 +9,11 @@ terraform {
   required_version = ">= 1.2.0"
 }
 
+resource "random_string" "suffix" {
+  length  = 6
+  special = false
+}
+
 provider "aws" {
   region = "eu-west-1"
 }
@@ -21,7 +26,7 @@ resource "aws_instance" "app_server" {
   key_name               = "clave-lucatic"
 
   tags = {
-    Name = var.instance_name
+    Name = "${var.instance_name}-${random_string.suffix.result}"
     APP  = var.app_name
   }
 }
