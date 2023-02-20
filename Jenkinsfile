@@ -58,7 +58,7 @@ pipeline {
         
         stage('Output from Terraform')
             steps {
-                sh 'terraform output'
+                sh ('terraform output')
             }
 
         stage('Run Ansible') {
