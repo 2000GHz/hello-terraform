@@ -56,11 +56,13 @@ pipeline {
                 }
             }
         
-        stage('Output from Terraform')
+        stage('Terraform Output') {
             steps {
-                sh ('terraform output')
+                withAWS(credentials: 'AWS Credentials') {
+                        sh ('terraform output')
+                    }
+                }
             }
-
         stage('Run Ansible') {
             steps {
                 withAWS(credentials: 'AWS Credentials') {
