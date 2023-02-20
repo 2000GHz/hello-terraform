@@ -9,3 +9,10 @@ variable "app_name" {
   type        = string
   default     = "AppName"
 }
+
+variable "instance_count" {
+  description = "Number of instances to be created"
+  type = number
+  default = 1
+
+}
