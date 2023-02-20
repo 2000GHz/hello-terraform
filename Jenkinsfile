@@ -51,7 +51,7 @@ pipeline {
             steps {
                 withAWS(credentials: 'AWS Credentials') {
                         sh ('''
-                    terraform apply -auto-approve -var "instance_count=2"''')
+                    terraform apply -auto-approve -var "instance_count=4"''')
                     }
                 }
             }
