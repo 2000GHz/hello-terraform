@@ -55,6 +55,11 @@ pipeline {
                     }
                 }
             }
+        
+        stage('Output from Terraform')
+            steps {
+                sh 'terraform output'
+            }
 
         stage('Run Ansible') {
             steps {
